@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <title>Responsive Layout with Music Bar</title>
+  <style>
+    /* -------------------- General Styles -------------------- */
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #4B2A55;
+      color: white;
+      margin: 0;
+      /* padding: 20px; */
+      padding-bottom: 80px; /* Space for music bar */
+    }
+    .mein-cont{
+      background-color: #1F8AC5;
+       margin-left: 285px;
+       width: 1045px;
+       height: 420px;
+       padding: 0px;
+      }
+    /* new */
+/*  */
+.brand {
+            font-size: 24px;
+            color: #d837b8;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-item {
+            /* padding: 10px; */
+            padding: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .menu-item a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-item i {
+            margin-right: 10px;
+        }
+
+        /* Active State */
+        .menu-item.active {
+            background-color: #FF3780;
+            color: white;
+            border: 2px solid #fff;
+        /*  */
+    cursor: pointer;
+    /* display: flex; */
+    /* align-items: center; */
+    transition: background 0.3s ease;
+    color: #fff;
+    border-radius: 5px;
+        /*  */
+        }
+
+        .menu-item:hover {
+            background-color: #9b2993;
+        }
+/*  */
+.sidebar {
+    width: 200px;
+    background-color: #05080A;
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease;
+}
+
+/* Initially hidden for mobile */
+.sidebar.hide {
+    transform: translateX(-260px);
+}
+
+.brand {
+    font-size: 24px;
+    color: #d837b8;
+    margin-bottom: 20px;
+}
+
+.brand span {
+    color: #6495ed;
+}
+
+.menu-section {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 14px;
+    color: #d837b8;
+    margin-bottom: 10px;
+}
+
+.head ul {
+    list-style-type: none;
+}
+
+.head li {
+    padding: 3px -5px;
+    cursor: pointer;
+    /* display: flex; */
+    /* align-items: center; */
+    transition: background 0.3s ease;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 18px;
+    margin-left: -40px;
+}
+
+.head li i {
+    /* margin-right: 10px; */
+    font-size: 25px;
+}
+.head li a {
+ text-decoration: none;
+ color: #fff;
+}
+/* .head ul li:hover, */
+.head ul li.active {
+    background-color: #d837b8;
+    color: #fff;
+    border:2px solid #ffffff8c;
+}
+
+.add-playlist-btn {
+    background-color: #2d2d2d;
+    color: #6495ed;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.add-playlist-btn i {
+    margin-right: 10px;
+}
+
+.add-playlist-btn:hover {
+    background-color: #444;
+}
+
+/* Hamburger Menu Styling */
+.menu-toggle {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+}
+    /* Hidden on larger screens */
+
+/* Media Queries for mobile and tablet */
+@media (max-width: 768px) {
+ .logo{
+    margin-left: 60px;
+    margin-top: -40px;
+ }
+
+    .sidebar {
+        transform: translateX(-260px); /* Hide sidebar by default */
+    }
+
+    .sidebar.show {
+        transform: translateX(0); /* Show sidebar on click */
+    }
+}
+
+/*  */
+/* Main Content */
+.content {
+    /* margin-left: 250px; */
+    padding: 20px;
+    flex-grow: 1;
+    transition: 0.3s ease;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* bar */
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-250px);
+
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .sidebar.open .close-btn {
+        display: block;
+    }
+}
+/* sidebar  */
+        /*  */
+        /* second  */
+        .cont{
+            max-width: 1200px;
+            height: auto;
+            margin-top: -50px;
+            background-color: rgb(44, 78, 134);
+            /* border-radius: 10px; */
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            margin-left: 280px;
+            margin-right: 14px;
+        }
+        /* second  */
+
+        .container {
+            max-width: 1200px;
+            height: 300px;
+            margin: 20px auto;
+            background-color: #1F8AC5;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            margin-left: 280px;
+            margin-right: 14px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header img {
+            width: 200px;
+            border-radius: 8px;
+        }
+
+        .header .text-content {
+            padding-left: 20px;
+            flex-grow: 1;
+        }
+
+        .header .text-content h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .header .text-content p {
+            margin: 5px 0;
+            color: #bbb;
+        }
+
+        .header .text-content span {
+            color: #ff007b;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .footer .details {
+            display: flex;
+            font-size: 1.2rem;
+        }
+
+        .footer .details span {
+            margin-right: 20px;
+        }
+
+        .footer .play-all {
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #ff3399;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-top: -200px;
+        }
+        .footer .play-all i{
+            font-size: 50px;
+            margin-left: 10px;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 767px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header .text-content {
+                padding-left: 0;
+                text-align: center;
+            }
+
+            .footer {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer .details {
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Tablet styles */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .header {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .header .text-content {
+                padding-left: 15px;
+            }
+        }
+
+        /* Laptop/Desktop styles */
+        @media (min-width: 1024px) {
+            .container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .header {
+                flex-direction: row;
+            }
+
+            .footer {
+                font-size: 1.2rem;
+            }
+        }
+              /* Navigation menu (top right) */
+              .nav {
+            position: absolute;
+            top: 60px;
+            right: 30px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .nav a:hover {
+            color: #ff007f;
+        }
+        /* Back arrow styling (top left) */
+        .back-arrow {
+            position: absolute;
+            top: 50px;
+            left: 290px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .back-arrow a{
+    text-decoration: none;
+    color: white;
+        }
+        .back-arrow a:hover {
+            color: #ff007f;
+        }
+        @media (max-width: 768px) {
+            .nav {
+                top: 15px;
+                right: 20px;
+            }
+
+            .nav a {
+                font-size: 14px;
+            }
+
+            .back-arrow {
+                top: 15px;
+                left: 20px;
+            }
+        }
+    /* Responsive design for mobile devices */
+    @media (max-width: 480px) {
+            .nav {
+                top: 10px;
+                right: 15px;
+            }
+
+            .nav a {
+                font-size: 12px;
+            }
+
+            .back-arrow {
+                font-size: 24px;
+                top: 10px;
+                left: 15px;
+            }
+        }
+/* Main Content */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    flex-grow: 1;
+    transition: margin-left 0.3s ease;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+}
+/* bar */
+.user i{
+      font-size: 30px;
+      margin-top: -2px;
+      }
+        /*  */
+        .ima{
+    display: flex;
+    margin-top: 80px;
+        }
+        .ima img{
+            margin-left: -1020px;
+        }
+        .ima h1{
+            margin-left: 50px;
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+            margin-top: -5px;
+        }
+        .ima p{
+            margin-left: 60px;
+            width: 250px;
+            font-family: "Poppins", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            margin-top: -5px;
+        }
+   /*  */
+            /* Adjust button size */
+            .show-all {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+        .mt{
+            display: flex;
+        }
+        .m1 h6{
+        margin-left: 20px;
+        font-size: 15px;
+        margin-top: 5px;
+        }
+        .m1 p{
+        margin-left: 25px;
+        font-size: 15px;
+        margin-top: -30px;
+        }
+   /*  */
+   /* five  */
+    /* new  */
+    /* -------------------- Container Styles -------------------- */
+    /* sec  */
+    .container1 {
+      /* width: 100%; */
+      /* max-width: 1050px; */
+      margin: auto;
+    }
+    .container-one {
+   margin-left: 900px;
+    }
+    /* -------------------- Music Bar -------------------- */
+    .music-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #1e1e1e;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      height: 50px;
+      border-top: 1px solid #333;
+      z-index: 1000;
+    }
+    .music-bar img {
+      margin-right: 10px;
+      border-radius: 5px;
+    }
+    .music-bar .details {
+      flex-grow: 1;
+      overflow: hidden;
+    }
+    #musicBarAudio {
+      width: 60%;
+      background: none;
+    }
+    
+    /* -------------------- Common Dropdown Styles -------------------- */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-button {
+      font-size: 24px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      color: #B8AABF;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #070707;
+      min-width: 100px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      border: 1px solid #333;
+      border-radius: 5px;
+      z-index: 100;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #B8AABF;
+    }
+    .dropdown-content a:hover {
+      background-color: #333;
+    }
+    
+    /* -------------------- Tab Layout (Mobile/Tablet) -------------------- */
+    .tabs-container {
+      background-color: #222;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+    .tab-header {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    .tab-header div {
+      flex: 1;
+      padding: 10px;
+      background: #ddd;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .tab-header div.active {
+      background: #007bff;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+      background-color: #000;
+      padding: 15px;
+      border-radius: 4px;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    /* Example card inside tab layout */
+    .tab-card {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .tab-card img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      margin-right: 10px;
+      border-radius: 4px;
+    }
+    .tab-card .details {
+      flex-grow: 1;
+    }
+    .tab-card .details h4 {
+      margin: 0;
+      font-size: 16px;
+    }
+    .tab-card .details p {
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: #ccc;
+    }
+    
+    /* -------------------- Card Row Layout (Laptop/Desktop) -------------------- */
+    .card-row-container {
+      /* This container is visible on larger screens */
+    }
+    .card-row {
+      background-color: #070707b4;
+      margin: 10px 70px;
+      /* padding: 15px; */
+      border-radius: 8px;
+      display: flex;
+      /* margin-left: -32px; */
+      /* align-items: center; */
+      justify-content: space-between;
+    }
+    .card-content {
+      display: flex;
+      align-items: center;
+    }
+    .card-content img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-right: 15px;
+    }
+    
+    /* -------------------- Responsive Visibility -------------------- */
+    /* Show tab layout only on mobile/tablet (max-width: 768px) */
+    .tabs-container {
+      display: none;
+    }
+    /* Show card rows on laptop/desktop (min-width: 769px) */
+    .card-row-container {
+      display: none;
+    }
+    
+    @media only screen and (max-width: 768px) {
+      .tabs-container {
+        display: block;
+      }
+      .mein-cont{
+        display: none;
+      }
+    }
+    @media only screen and (min-width: 769px) {
+      .card-row-container {
+        display: block;
+      }
+      .container-one {
+       /* display: block; */
+      }
+      .mein-cont{
+        display: block;
+      }
+    }
+    
+    /* -------------------- Additional Responsive Tweaks -------------------- */
+    @media only screen and (max-width: 480px) {
+      .dropdown-button {
+        font-size: 20px;
+      }
+      .tab-header div {
+        padding: 8px;
+        font-size: 14px;
+      }
+      .container1 {
+      width: 270px;
+      margin-left: -10px;
+      }
+    }
+    /* external  */
+    .container-one {
+            width: 100%;
+            /* max-width: 700px; */
+            max-width: 1060px;
+            padding: 20px;
+            /* margin-left: 500px; */
+            margin-left: 230px;
+        }
+        .chart {
+            /* background-color: #000; */
+            width: 103%;
+            /* background-color: #3C2440; */
+            /* border-radius: 8px; */
+            overflow: hidden;
+        }
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #1897db;
+            width: 1025px;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        .chart-row {
+            background-color: #070707b4;
+            display: flex;
+            /* align-items: center; */
+            justify-content: space-between;
+            padding: 10px;
+            height: 50px;
+            /* padding: 5px 10px; */
+            /* border-bottom: 1px solid #6D456E; */
+        }
+        .chart-row:last-child {
+            border-bottom: none;
+        }
+        .chart-row img {
+            width: 50px;
+            height: 50px;
+            /* border-radius: 4px; */
+            margin-right: 10px;
+            /* margin-left: 10px; */
+        }
+        .chart-info {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+        .chart-info div {
+            margin-right: 20px;
+        }
+        .chart-info div:first-child {
+            font-weight: bold;
+        }
+        .chart-info div:nth-child(2) {
+            color: #B8AABF;
+        }
+        .chart-info div:nth-child(3) {
+            font-size: 0.9em;
+        }
+        .chart-time {
+            display: flex;
+            align-items: center;
+            color: #B8AABF;
+        }
+        .chart-time i {
+            color: #C75B8C;
+            margin-left: 5px;
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .chart-info div {
+                margin-right: 10px;
+                font-size: 0.9em;
+            }
+            .chart-row img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+            /* Responsive Design for Mobile */
+    @media (max-width: 768px) {
+      .container-one {
+        /* display: none; */
+      }
+
+      /* .tabs {
+        display: block;
+      } */
+    } 
+    @media (max-width: 768px) {
+      .container-one {
+        /* display: none; */
+      }
+
+      /* .tabs {
+        display: block;
+      } */
+    } 
+    /* extarnal  */
+
+    /* mid  */
+   /* For devices with width 360px to 480px */
+@media (min-width: 360px) and (max-width: 480px) {
+  .music-bar {
+    padding: 5px;
+    font-size: 12px;
+  }
+  .music-bar img {
+    width: 40px;
+    margin-right: 5px;
+  }
+  .music-bar .details h4 {
+    font-size: 14px;
+  }
+}
+
+/* For devices with width 481px to 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .music-bar {
+    padding: 8px;
+    font-size: 13px;
+  }
+  .music-bar img {
+    width: 50px;
+    margin-right: 8px;
+  }
+  .music-bar .details h4 {
+    font-size: 15px;
+  }
+}
+
+/* For devices with width 769px to 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .music-bar {
+    padding: 10px;
+    font-size: 14px;
+  }
+  .music-bar img {
+    width: 60px;
+    margin-right: 10px;
+  }
+  .music-bar .details h4 {
+    font-size: 16px;
+  }
+}
+    /* mid  */
+    /* sec  */
+  </style>
+</head>
+<body>
+    <!-- sidebar  -->
+<!-- Hamburger icon for mobile -->
+<div class="menu-toggle">
+    <div id="open-menu">
+        <i style="padding-top: -900px;"class="fas fa-bars"></i>
+    <div class="logo"><img src="pnglogo.png" alt="">
+        <div class="auth">
+            <a href="login.html" class="login">Login</a>
+            <a href="singup.html" class="signup">Sign Up</a>
+        </div>
+    </div>
+  </div>
+    <i style="margin-left: 200px;" class="fas fa-times" id="close-menu" style="display: none;"></i>
+  </div>
+  
+  <!-- Sidebar Container -->
+  <div class="sidebar" id="sidebar">
+    <h2 class="brand">Cure <span>Space</span></h2>
+    <!-- Menu Section -->
+    <div class="menu-section">
+                <nav class="menu">
+        <p class="section-title">Menu</p>
+        <div class="head">
+    </div>
+  </div>
+  <!--  -->
+  <ul class="menu">
+    <li class="menu-item"><a href="#"><i class="fas fa-home"></i> Leaderboard</a></li>
+    <li class="menu-item"><a href="#"><i class="fas fa-compass"></i> Discover</a></li>
+    <li class="menu-item active"><a href="#"><i class="fas fa-music"></i> Albums</a></li>
+    <li class="menu-item"><a href="#"><i class="fas fa-user"></i> Artists</a></li>
+  </ul>
+  <!--  -->
+    <!-- Library Section -->
+    <div class="menu-section">
+        <p class="section-title">Library</p>
+      <!--  -->
+  <ul class="menu">
+    <li class="menu-item"><a href="#"><i class="fas fa-user"></i> Recently Added</a></li>
+    <li class="menu-item"><a href="#"><i class="fas fa-compass"></i> Most playedr</a></li>
+  </ul>
+  <!--  -->
+  </div>
+    <!-- Playlist Section -->
+    <div class="menu-section">
+        <p class="section-title">Playlist and favorite</p>
+              <!--  -->
+  <ul class="menu">
+    <li class="menu-item"><a href="#"><i class="fas fa-user"></i> Your favorites</a></li>
+    <li class="menu-item"><a href="#"><i class="fas fa-compass"></i> Your playlist</a></li>
+  </ul>
+  <!--  -->
+        <button class="add-playlist-btn"><i class="fas fa-plus-circle"></i> Add playlist</button>
+    </div>
+  </div>
+  <!--  -->
+  <!-- sidbar  -->
+    <!-- /* new */ -->
+    <!-- header  -->
+        <div class="container">
+            <div class="header">
+             <!-- Back Arrow -->
+        <div class="back-arrow"><a href="index.html"><i class="fa-solid fa-arrow-left"></i></a></div>
+        <!-- Navigation Links -->
+        <div class="nav">
+            <a href="#">Explore</a>
+            <a href="#">Categories</a>
+            <a href="#">Most Viewed</a>
+            <a class="user" href="#"><i class="fa-regular fa-circle-user"></i></a>
+        </div>
+    </div>
+    <!-- header  -->
+                <!-- Image Section -->
+                 <div class="ima">
+                <img src="https://img.freepik.com/free-photo/portrait-young-cheerful-girl-listening-music-headphones-isolated-gradient-pink-background-blue-neon-light_155003-45720.jpg" width="200"height="200" alt="Trending Music Image">
+                <!-- Text Section -->
+                <div class="text-content">
+                    <h1>Trending Songs <span>Mix</span></h1>
+                    <p>Tate McRae, Nightmares, The Neighbourhood, Doja Cat and...</p>
+                    <div class="two-pra" style="margin-left: 60px;">
+                        <span> 20 songs </span>
+                        <span class="dotit" style="font-size: 35px;color: #e600da;margin-left: 20px;">.</span>
+                        <span style="margin-left: 20px;">36m 1h</span>
+                    </div>
+                    <div class="tab-card" data-audio="Maine Socha Bhi Na Tha.mp4" data-img="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQMv5GIaiorXuP4dTgMuZOq6PCLy6Svsm9XbLn_bNTDTkGg_Rmi" data-title="Song Title 1" data-artist="Artist 1" style="margin-top: -60px;margin-left: 590px;">
+                        <span  class="play-text" style="margin-right: 10px; color: rgb(212, 24, 165); font-size: 25px;"> Play button </span><button class="play-btn" style="border-radius: 50%; font-size: 20px;width: 50px;height: 50px;background-color: transparent;border: 3px solid rgb(212, 24, 165); color: rgb(212, 24, 165);">▶ </button>
+                      </div>
+                     </div>
+                    <!--  -->
+                </div>
+            </div>
+    
+    <!-- /* new  */ -->
+  <!--  -->
+    <!-- doc  -->
+  <!-- Tab Layout for Mobile/Tablet -->
+  <div class="container1 tabs-container">
+    <div class="tab-header">
+      <div data-tab="tab1" class="active">Tab 1</div>
+      <div data-tab="tab2">Tab 2</div>
+      <div data-tab="tab3">Tab 3</div>
+      <div data-tab="tab4">Tab 4</div>
+    </div>
+    <!-- Tab Content 1 -->
+     <!-- <img src="sheh.jpg" alt=""> -->
+    <div id="tab1" class="tab-content active">
+      <!-- Example card in tab layout -->
+      <div class="tab-card" data-audio="Maine Socha Bhi Na Tha.mp4" data-img="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQMv5GIaiorXuP4dTgMuZOq6PCLy6Svsm9XbLn_bNTDTkGg_Rmi" data-title="Song Title 1" data-artist="Artist 1">
+        <button class="play-btn">▶</button>
+        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQMv5GIaiorXuP4dTgMuZOq6PCLy6Svsm9XbLn_bNTDTkGg_Rmi" alt="Album Art">
+        <div class="details">
+          <h4>Song Title 1</h4>
+          <p>Artist 1</p>
+        </div>
+      </div>
+      <!-- </div> -->
+      <!-- Additional tab cards can be added here -->
+         <!-- Example card in tab layout -->
+      <div class="tab-card" data-audio="Maine Socha Bhi Na Tha.mp4" data-img="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcShACDVSQ2_mhdyEA2Y-PdfILnzPQpePA_bMIJOYiA6Ym39np6N" data-title="Song Title 1" data-artist="Artist 1" style="margin-top: 20px;background-color: blue;margin-top: 50px;">
+        <button class="play-btn">▶</button>
+        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcShACDVSQ2_mhdyEA2Y-PdfILnzPQpePA_bMIJOYiA6Ym39np6N" alt="Album Art">
+        <div class="details">
+          <h4>Song Title 1</h4>
+          <p>Artist 1</p>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-button" onclick="toggleDropdown(event)">&#8942;</button>
+            <div class="dropdown-content">
+              <a href="#">Option 1</a>
+              <a href="#">Option 2</a>
+              <a href="#">Option 3</a>
+            </div>
+          </div>
+      </div>
+      <!-- Additional tab cards can be added here -->
+         <!-- Example card in tab layout -->
+      <div class="tab-card" data-audio="Maine Socha Bhi Na Tha.mp4" data-img="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ4mooxqhTotUZ1vEY9AT1eLK0WUw3PLymwxUEl7hWB4fBWb1ll" data-title="Song Title 1" data-artist="Artist 1">
+        <button class="play-btn">▶</button>
+        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ4mooxqhTotUZ1vEY9AT1eLK0WUw3PLymwxUEl7hWB4fBWb1ll" alt="Album Art">
+        <div class="details">
+          <h4>Song Title</h4>
+          <p>Artist 1</p>
+        </div>
+        <div class="dropdown">
+          <button class="dropdown-button" onclick="toggleDropdown(event)">&#8942;</button>
+          <div class="dropdown-content">
+            <a href="#">Option 1</a>
+            <a href="#">Option 2</a>
+            <a href="#">Option 3</a>
+          </div>
+        </div>
+      </div>
+      <!-- Additional tab cards can be added here -->
+    </div>
+    <!-- Tab Content 2 -->
+    <div id="tab2" class="tab-content">
+      <p>Content for Tab 2</p>
+    </div>
+    <!-- Tab Content 3 -->
+    <div id="tab3" class="tab-content">
+      <p>Content for Tab 3</p>
+    </div>
+    <!-- Tab Content 4 -->
+    <div id="tab4" class="tab-content">
+      <p>Content for Tab 4</p>
+    </div>
+  </div>
+  <!-- extarnal -->
+   <div class="mein-cont">
+  <div class="container-one" style="margin-left: -40px;">
+    <!-- Music Chart -->
+    <div class="chart">
+      <div class="chart-header">
+        <span>#</span>
+        <span>Title1</span>
+        <span>Artist</span>
+        <span>Time</span>
+      </div>
+<!-- <audio src="Maine Socha Bhi Na Tha.mp4"></audio> -->
+<div class="card-row" data-audio="Maine Socha Bhi Na Tha.mp4" data-img="https://via.placeholder.com/60" data-title="Song Title 2" data-artist="Artist 2" style="width: 1026px;margin-left: 38px;">
+  <div style="margin-right: -20px;margin-left: -14px;margin-top: 20px;"><span>1</span></div>
+  <div class="card-content">
+    <button class="play-btn" style="margin-left: 30px;">▶</button>
+        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcShACDVSQ2_mhdyEA2Y-PdfILnzPQpePA_bMIJOYiA6Ym39np6N" alt="Album">
+        <div class="tab">
+          <div style="margin-left: -2px;">Sorfcore</div>
+        <div style="font-size: 14px;">The Neighbourhood</div>
+    </div>
+        <div style="margin-left: 60px;">Nov 4, 2023</div>
+        <div style="margin-left: 150px;">Hard to Imagine the Neighbourhood Ever Changing</div>
+    </div>
+    <div class="chart-time">3:26 <i class="fa fa-heart"></i>
+    <!--  -->
+    <div class="dropdown">
+        <button class="dropdown-button" onclick="toggleDropdown(event)">&#8942;</button>
+        <div class="dropdown-content">
+          <a href="#">Option 1</a>
+          <a href="#">Option 2</a>
+          <a href="#">Option 3</a>
+          <a href="#">Option 3</a>
+        </div>
+      </div>
+      </div>
+    <!--  -->
+    </div>
+      </div>
+         <!--  -->
+         <div class="card-row" data-audio="Maine Socha Bhi Na Tha.mp4" data-img="https://via.placeholder.com/60" data-title="Song Title 2" data-artist="Artist 2" style="width: 1024px;margin-left: 40px;">
+          <div style="margin-right: -20px;margin-left: -14px;margin-top: 20px;"><span>2</span></div>
+          <div class="card-content">
+            <button class="play-btn" style="margin-left: 27px;">▶</button>
+           <img src="images.jpeg" alt="Album">
+           <div class="tab">
+            <div style="margin-left: -2px;">Sorfcore</div>
+           <div style="font-size: 14px;margin-left: -2px;">The Neighbourhood</div>
+       </div>
+           <div style="margin-left: 60px;">Nov 5, 2023</div>
+           <div style="margin-left: 150px;">Hard to Imagine the Neighbourhood Ever Changing</div>
+       </div>
+       <div class="chart-time">3:26 <i class="fa fa-heart"></i>
+        <!--  -->
+    <div class="dropdown">
+      <button class="dropdown-button" onclick="toggleDropdown(event)">&#8942;</button>
+      <div class="dropdown-content">
+        <a href="#">Option 1</a>
+        <a href="#">Option 2</a>
+        <a href="#">Option 3</a>
+      </div>
+    </div>
+    </div>
+    <!-- </div> -->
+  <!--  -->
+      </div>
+          <!--  -->
+      </div>
+  
+    <!--  -->
+    <div class="card-row" data-audio="Maine Socha Bhi Na Tha.mp4" data-img="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcShACDVSQ2_mhdyEA2Y-PdfILnzPQpePA_bMIJOYiA6Ym39np6N" data-title="Song Title 2" data-artist="Artist 2" style="margin-left: 23px;width: 1021px;">
+      <div style="margin-right: -20px;margin-left: -17px;"><span>3</span></div>
+      <div class="card-content">
+        <button class="play-btn"style="margin-left: 29px;">▶</button>
+         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVzRfFSsDvwabDD_Uqmbr8gHR-rIdftGcBbDbb4_fqLnmvrrxp" alt="Album">
+         <div class="tab">
+         <div style="margin-left: -2px;">Sorfcore</div>
+         <div style="font-size: 14px;margin-left: -4px;">The Neighbourhood</div>
+     </div>
+         <div style="margin-left: 60px;">Nov 6, 2023</div>
+         <div style="margin-left: 150px;">Hard to Imagine the Neighbourhood Ever Changing</div>
+     </div>
+     <div class="chart-time">3:26 <i class="fa fa-heart"></i>
+    <!--  -->
+    <div class="dropdown">
+      <button class="dropdown-button" onclick="toggleDropdown(event)">&#8942;</button>
+      <div class="dropdown-content">
+        <a href="#">Option 1</a>
+        <a href="#">Option 2</a>
+        <a href="#">Option 3</a>
+      </div>
+      </div>
+      </div>
+      </div>
+    </div>
+  <!--  -->
+  <!-- external  -->
+  <!-- Music Bar (Visible on all devices) -->
+  <div class="music-bar">
+    <img id="musicBarImg" src="sheh.jpg" alt="Album" width="50">
+    <div class="details">
+      <h4 id="musicBarTitle">No Song Playing</h4>
+      <p id="musicBarArtist"></p>
+    </div>
+    <audio id="musicBarAudio" controls></audio>
+  </div>
+  <!-- -------------------- JavaScript -------------------- -->
+    <!-- doc  -->
+ 
+  <!-- -------------------- JavaScript -------------------- -->
+  <script>
+    // active 
+    // Select all menu items
+    const menuItems = document.querySelectorAll(".menu-item");
+
+// Function to remove 'active' from all and add to clicked one
+menuItems.forEach(item => {
+    item.addEventListener("click", function() {
+        menuItems.forEach(menu => menu.classList.remove("active")); // Remove active from all
+        this.classList.add("active"); // Add active to clicked one
+    });
+});
+// active 
+
+const openMenuIcon = document.getElementById('open-menu');
+const closeMenuIcon = document.getElementById('close-menu');
+const sidebar = document.getElementById('sidebar');
+
+// Open sidebar
+openMenuIcon.addEventListener('click', () => {
+sidebar.classList.add('show');
+openMenuIcon.style.display = 'none';
+closeMenuIcon.style.display = 'block';
+});
+
+// Close sidebar
+closeMenuIcon.addEventListener('click', () => {
+sidebar.classList.remove('show');
+openMenuIcon.style.display = 'block';
+closeMenuIcon.style.display = 'none';
+});
+// 
+    // sidebar 
+  //  extarnal java 
+  // Toggle dropdown function for all dropdown buttons
+  function toggleDropdown(event) {
+      event.stopPropagation();
+      const dropdownContent = event.currentTarget.nextElementSibling;
+      // Close any other open dropdowns
+      document.querySelectorAll(".dropdown-content").forEach(content => {
+        if (content !== dropdownContent) {
+          content.style.display = "none";
+        }
+      });
+      // Toggle current dropdown
+      dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+    }
+    
+    // Close any open dropdown if the user clicks outside
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".dropdown-content").forEach(content => {
+        content.style.display = "none";
+      });
+    });
+    
+    // Tab functionality for mobile/tablet layout
+    const tabHeaders = document.querySelectorAll(".tab-header div");
+    const tabContents = document.querySelectorAll(".tab-content");
+    tabHeaders.forEach(header => {
+      header.addEventListener("click", () => {
+        tabHeaders.forEach(h => h.classList.remove("active"));
+        tabContents.forEach(content => content.classList.remove("active"));
+        header.classList.add("active");
+        document.getElementById(header.dataset.tab).classList.add("active");
+      });
+    });
+    
+    // Music player functionality (basic implementation)
+    const musicBarImg = document.getElementById("musicBarImg");
+    const musicBarTitle = document.getElementById("musicBarTitle");
+    const musicBarArtist = document.getElementById("musicBarArtist");
+    const musicBarAudio = document.getElementById("musicBarAudio");
+    
+    let currentPlayingRow = null;
+    
+    // Assign play functionality to buttons in both layouts (if available)
+    document.querySelectorAll(".play-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const card = btn.closest("[data-audio]");
+        const audioSrc = card.dataset.audio;
+        const imgSrc = card.dataset.img;
+        const title = card.dataset.title;
+        const artist = card.dataset.artist;
+    
+        // Toggle play/pause if same card is clicked
+        if (currentPlayingRow === card) {
+          if (musicBarAudio.paused) {
+            musicBarAudio.play();
+            btn.textContent = "⏸";
+          } else {
+            musicBarAudio.pause();
+            btn.textContent = "▶";
+          }
+          return;
+        }
+    
+        // Reset previous play button if applicable
+        if (currentPlayingRow) {
+          const prevBtn = currentPlayingRow.querySelector(".play-btn");
+          if (prevBtn) {
+            prevBtn.textContent = "▶";
+          }
+        }
+        currentPlayingRow = card;
+        musicBarImg.src = imgSrc;
+        musicBarTitle.textContent = title;
+        musicBarArtist.textContent = artist;
+        musicBarAudio.src = audioSrc;
+        musicBarAudio.play();
+        btn.textContent = "⏸";
+      });
+    });
+    
+    musicBarAudio.addEventListener("ended", () => {
+      if (currentPlayingRow) {
+        const btn = currentPlayingRow.querySelector(".play-btn");
+        if (btn) {
+          btn.textContent = "▶";
+        }
+        currentPlayingRow = null;
+      }
+    });
+    // enternal java
+    const playButtons = document.querySelectorAll(".play-btn");
+    playButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const chartRow = btn.closest(".chart-row");
+        const audioSrc = chartRow.dataset.audio;
+        const imgSrc = chartRow.dataset.img;
+        const title = chartRow.dataset.title;
+        const artist = chartRow.dataset.artist;
+
+        // If the same row is clicked, toggle play/pause
+        if (currentPlayingRow === chartRow) {
+          if (musicBarAudio.paused) {
+            musicBarAudio.play();
+            btn.textContent = "⏸"; // Change button to pause
+          } else {
+            musicBarAudio.pause();
+            btn.textContent = "▶"; // Change button to play
+          }
+          return;
+        }
+
+        // If a new row is clicked, update the Music Bar and play the new audio
+        if (currentPlayingRow) {
+          // Reset the previous button to play
+          currentPlayingRow.querySelector(".play-btn").textContent = "▶";
+        }
+
+        currentPlayingRow = chartRow;
+
+        // Update Music Bar
+        musicBarImg.src = imgSrc;
+        musicBarTitle.textContent = title;
+        musicBarArtist.textContent = artist;
+        musicBarAudio.src = audioSrc;
+
+        // Play the new audio
+        musicBarAudio.play();
+        btn.textContent = "⏸"; // Change button to pause
+      });
+    });
+
+    // Reset button when the audio ends
+    musicBarAudio.addEventListener("ended", () => {
+      if (currentPlayingRow) {
+        currentPlayingRow.querySelector(".play-btn").textContent = "▶";
+        currentPlayingRow = null;
+      }
+    });
+    // enternal jaava 
+  </script>
+</body>
+</html>
